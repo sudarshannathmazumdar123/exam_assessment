@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidate Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #87CEEB; /* Sky blue color */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 50px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            width: 300px;
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+            text-align: left;
+        }
+        input, select {
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .submit-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .submit-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Candidate Information</h1>
+        <form id="candidateForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="class">Class:</label>
+            <input type="text" id="class" name="class" required>
+            
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+            
+            <label for="subject">Subject:</label>
+            <select id="subject" name="subject" required>
+                <option value="english">English</option>
+                <option value="maths">Maths</option>
+                <option value="science">Science</option>
+            </select>
+            
+            <button type="submit" class="submit-button">Submit</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('candidateForm').onsubmit = function(event) {
+            event.preventDefault();
+            const form = event.target;
+            const name = form.name.value;
+            const classValue = form.class.value;
+            const age = form.age.value;
+            const subject = form.subject.value;
+
+            localStorage.setItem('candidateName', name);
+            localStorage.setItem('candidateClass', classValue);
+            localStorage.setItem('candidateAge', age);
+            localStorage.setItem('candidateSubject', subject);
+
+           if (subject === 'english') {
+                window.location.href = 'quiz.html';
+            } else {
+                alert('Only English subject is currently supported.');
+            } 
+        }
+    
+
+    </script>
+</body>
+</html>
